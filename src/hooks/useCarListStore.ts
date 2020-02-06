@@ -136,19 +136,18 @@ function useCarListStore() {
         manufacturers: [...prevState.manufacturers, ...manufacturersNames],
       }));
       await updateCarList();
-      setLoading(false);
     } catch (error) {
       console.log('error', error);
     }
-  }, [updateCarList]);
+  }, []);
 
   useEffect(() => {
     updateCarList();
-  }, [updateCarList, pagination.active]);
+  }, [pagination.active]);
 
   useEffect(() => {
     updateCarList(true);
-  }, [updateCarList, filter]);
+  }, [filter]);
 
   return {
     loading,
