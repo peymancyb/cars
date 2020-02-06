@@ -1,8 +1,9 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import Layout from '../components/Layout';
 import CarApi from '../api';
 import Button from '../components/Button';
+import LocalStorage from '../api/localStorage';
 
 interface ICar {
   stockNumber: number;
@@ -20,13 +21,14 @@ interface ICar {
 function CardDetails() {
   const [carDetails, setCarDetails] = useState<ICar | null>(null);
   const {stockNumber} = useParams();
+  const history = useHistory();
 
   const getCar = useCallback(async () => {
     try {
       const {car} = await CarApi.getCarByStockNumber(stockNumber!);
       setCarDetails(car);
     } catch (error) {
-      console.log('error -> ', error);
+      history.push('/');
     }
   }, [stockNumber]);
 
@@ -44,6 +46,10 @@ function CardDetails() {
     return `Stock #${carDetails!.stockNumber} - ${
       mileage.number
     } ${mileage.unit.toUpperCase()} - ${fuelType} - ${color}`;
+  };
+
+  const addToLocalStorage = () => {
+    LocalStorage.addCar(carDetails!);
   };
 
   if (!carDetails) {
@@ -76,7 +82,11 @@ function CardDetails() {
               If you like this car, click the button and save it in your
               collection of favourite items.
             </p>
-            <Button className="align-right" onPress={() => {}} text="Save" />
+            <Button
+              className="align-right"
+              onPress={() => addToLocalStorage()}
+              text="Save"
+            />
           </div>
         </div>
       </div>

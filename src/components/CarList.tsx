@@ -66,14 +66,18 @@ const useStyles = makeStyles(theme => ({
 interface ICarList {
   loading: boolean;
   cars: ICar[];
+  removable?: boolean;
+  onRemoveItem?: (stockNumber: number) => void;
 }
 
 interface ILoadingCarItem {
   loading: boolean;
   car?: ICar;
+  removable?: boolean;
+  onRemoveItem?: (stockNumber: number) => void;
 }
 
-function CarItem({loading, car}: ILoadingCarItem) {
+function CarItem({loading, car, removable, onRemoveItem}: ILoadingCarItem) {
   const classes = useStyles();
   return (
     <div className={classes.cardContainer}>
@@ -117,17 +121,31 @@ function CarItem({loading, car}: ILoadingCarItem) {
               View details
             </Link>
           )}
+          {removable ? (
+            <p
+              onClickCapture={() =>
+                onRemoveItem && onRemoveItem(car!.stockNumber)
+              }>
+              remove
+            </p>
+          ) : null}
         </CardContent>
       </Card>
     </div>
   );
 }
 
-function CarList({loading, cars}: ICarList) {
+function CarList({loading, cars, removable, onRemoveItem}: ICarList) {
   return (
     <div>
       {cars.map(car => (
-        <CarItem key={car.stockNumber} loading={loading} car={car} />
+        <CarItem
+          key={car.stockNumber}
+          loading={loading}
+          car={car}
+          removable={removable}
+          onRemoveItem={onRemoveItem}
+        />
       ))}
     </div>
   );
