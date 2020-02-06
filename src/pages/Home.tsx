@@ -1,59 +1,22 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Layout from '../components/Layout';
 import FilterForm from '../components/FilterForm';
 import CarList from '../components/CarList';
 import Pagination from '../components/Pagination';
 import AvailableCars from '../components/AvailableCars';
-import CarApi from '../api';
 import useCarListStore from '../hooks/useCarListStore';
-
-interface ICarModel {
-  name: string;
-}
-
-interface IManufacture {
-  name: string;
-  models?: ICarModel[];
-}
-
-function getManufacturersNames(manufacturersList: IManufacture[]) {
-  return manufacturersList.map(
-    (manufacturer: IManufacture) => manufacturer.name,
-  );
-}
 
 function Home() {
   const {
     loading,
-    setLoading,
     carsList,
-    setCarsList,
     formOptions,
-    setFormOptions,
     setFilter,
-    filteredCarList,
+    pagination,
+    onChangePage,
+    getInitialState,
   } = useCarListStore();
-
-  const getInitialState = useCallback(async () => {
-    try {
-      setLoading(true);
-      const [colorsList, manufacturersList, carList] = await Promise.all([
-        CarApi.getColorsList(),
-        CarApi.getManufacturersList(),
-        CarApi.getCarList(),
-      ]);
-      const manufacturersNames = getManufacturersNames(manufacturersList);
-      setCarsList(carList);
-      setFormOptions(prevState => ({
-        colors: [...prevState.colors, ...colorsList],
-        manufacturers: [...prevState.manufacturers, ...manufacturersNames],
-      }));
-      setLoading(false);
-    } catch (error) {
-      console.log('error =>', error);
-    }
-  }, [setCarsList, setFormOptions, setLoading]);
 
   useEffect(() => {
     getInitialState();
@@ -71,14 +34,16 @@ function Home() {
         </Grid>
         <Grid item xs={12} sm={7}>
           <AvailableCars
-            carListCount={filteredCarList.length}
+            carListCount={pagination.active * carsList.cars.length}
             totalCarsCount={carsList.totalCarsCount}
             loading={loading}
           />
-          <CarList loading={loading} cars={filteredCarList} />
+          <CarList loading={loading} cars={carsList.cars} />
           <Pagination
-            totalPageCount={carsList.totalPageCount}
+            activePage={pagination.active}
+            totalPageCount={pagination.total}
             loading={loading}
+            onChangePage={onChangePage}
           />
         </Grid>
       </Grid>

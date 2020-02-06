@@ -1,30 +1,18 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
 
 interface IPagination {
   totalPageCount: number;
   loading: boolean;
+  activePage: number;
+  onChangePage: (page: number) => void;
 }
 
-interface ITextLink {
-  text: string;
-  href: string;
-}
-
-function TextLink({text, href}: ITextLink) {
-  return (
-    <Link
-      color="inherit"
-      noWrap
-      variant="body2"
-      href={href}
-      className="details-text">
-      {text}
-    </Link>
-  );
-}
-
-function Pagination({totalPageCount, loading}: IPagination) {
+function Pagination({
+  totalPageCount,
+  loading,
+  activePage,
+  onChangePage,
+}: IPagination) {
   if (loading) {
     return null;
   }
@@ -39,11 +27,27 @@ function Pagination({totalPageCount, loading}: IPagination) {
         marginLeft: 100,
         marginRight: 100,
       }}>
-      <TextLink text="First" href="/" />
-      <TextLink text="Previous" href="/" />
-      <p>Page 1 of {totalPageCount}</p>
-      <TextLink text="Next" href="/" />
-      <TextLink text="Last" href="/" />
+      <p className="details-text" onClickCapture={() => onChangePage(1)}>
+        First
+      </p>
+      <p
+        className="details-text"
+        onClickCapture={() => onChangePage(activePage - 1)}>
+        Previous
+      </p>
+      <p>
+        Page {activePage} of {totalPageCount}
+      </p>
+      <p
+        className="details-text"
+        onClickCapture={() => onChangePage(activePage + 1)}>
+        Next
+      </p>
+      <p
+        className="details-text"
+        onClickCapture={() => onChangePage(totalPageCount)}>
+        Last
+      </p>
     </div>
   );
 }

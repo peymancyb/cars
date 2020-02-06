@@ -72,7 +72,6 @@ function FilterForm({colors, manufactureList, onFilter}: IFilterForm) {
             id="color-label-id"
             value={selectedColor}
             onChange={(event: React.ChangeEvent<{value: unknown}>) => {
-              console.log('onColorSelect -> ', event.target.value);
               setSelectedColor(event.target.value as string);
             }}
             displayEmpty
@@ -91,7 +90,6 @@ function FilterForm({colors, manufactureList, onFilter}: IFilterForm) {
             id="Manufacturer-label-id"
             value={selectedManufacture}
             onChange={(event: React.ChangeEvent<{value: unknown}>) => {
-              console.log('onManufactureSelect -> ', event.target.value);
               setSelectedManufacture(event.target.value as string);
             }}
             displayEmpty

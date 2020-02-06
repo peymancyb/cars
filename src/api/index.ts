@@ -39,10 +39,16 @@ interface IStockNumberData {
 const endpointUrl = 'https://auto1-mock-server.herokuapp.com/api/';
 
 class CarApi {
-  static async getCarList(): Promise<ICars> {
+  static async getCarList(
+    page: number = 1,
+    manufacturer: string = '',
+    color: string = '',
+  ): Promise<ICars> {
     let carList;
     try {
-      const {data} = await axios.get(`${endpointUrl}cars/`);
+      const {data} = await axios.get(
+        `${endpointUrl}cars/?page=${page}&manufacturer=${manufacturer}&color=${color}&sort=asc`,
+      );
       carList = data;
     } catch (error) {
       console.log('getCarList: error => ', error);
