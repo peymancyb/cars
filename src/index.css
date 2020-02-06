@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.standard-button {
+  background-color: #EA7F28;
+  width: 128px;
+  height: 32px;
+  border: none;
+  outline: inherit;
+}
+
+.standard-button:active{
+  background-color: #D37324;
+}
+
+.standard-text {
+  color: white;
+  padding: 0px;
+  margin: 0px; 
+  font-family: roboto;
+  font-size: 18px;
+}
+
+.details-text {
+  color: #EA7F28 !important;
+  font-family: roboto;
+  font-size: 14px;
+}
+
+.align-right {
+  margin-left: auto;
+  display: block;
+}
+
+.head-text {
+  font-family: roboto-bold;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0px;
+}
+
+.result-text {
+  font-size: 24px;
+  margin-top: 12px;
+}
