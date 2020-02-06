@@ -34,7 +34,7 @@ function Home() {
         </Grid>
         <Grid item xs={12} sm={7}>
           <AvailableCars
-            carListCount={pagination.active * carsList.cars.length}
+            carListCount={10 * (pagination.active - 1) + carsList.cars.length}
             totalCarsCount={carsList.totalCarsCount}
             loading={loading}
           />
