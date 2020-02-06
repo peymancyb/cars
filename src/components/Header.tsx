@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
 import Logo from '../assets/logo@2x.png';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     display: 'flex',
@@ -41,19 +41,18 @@ export default function Header() {
       <Toolbar className={classes.toolbar}>
         <div>
           <a href="/">
-            <img src={Logo} alt="logo" style={{ width: 150 }} />
+            <img src={Logo} alt="logo" style={{width: 150}} />
           </a>
         </div>
         <div>
-          {links.map((link) => (
+          {links.map(link => (
             <Link
               key={link.title}
               color="inherit"
               noWrap
               variant="body2"
               href={link.url}
-              className={classes.toolbarLink}
-            >
+              className={classes.toolbarLink}>
               {link.title}
             </Link>
           ))}

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import brandColors from '../constants/colors';
 import Button from './Button';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     padding: theme.spacing(4),
     color: theme.palette.text.secondary,
@@ -49,17 +49,17 @@ interface IFilterOptions {
   manufacture: string;
 }
 
-interface IFilterForm{
+interface IFilterForm {
   manufactureList: string[];
   colors: string[];
   onFilter: (filterOptions: IFilterOptions) => void;
 }
 
-function FilterForm({
-  colors, manufactureList, onFilter,
-}: IFilterForm) {
+function FilterForm({colors, manufactureList, onFilter}: IFilterForm) {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
-  const [selectedManufacture, setSelectedManufacture] = useState(manufactureList[0]);
+  const [selectedManufacture, setSelectedManufacture] = useState(
+    manufactureList[0],
+  );
 
   const classes = useStyles();
   return (
@@ -71,14 +71,17 @@ function FilterForm({
             labelId="color-label"
             id="color-label-id"
             value={selectedColor}
-            onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
+            onChange={(event: React.ChangeEvent<{value: unknown}>) => {
               console.log('onColorSelect -> ', event.target.value);
               setSelectedColor(event.target.value as string);
             }}
             displayEmpty
-            className={classes.selectEmpty}
-          >
-            {colors.map((color) => <MenuItem key={color} value={color}>{color}</MenuItem>)}
+            className={classes.selectEmpty}>
+            {colors.map(color => (
+              <MenuItem key={color} value={color}>
+                {color}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
@@ -87,24 +90,29 @@ function FilterForm({
             labelId="Manufacturer-label"
             id="Manufacturer-label-id"
             value={selectedManufacture}
-            onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
+            onChange={(event: React.ChangeEvent<{value: unknown}>) => {
               console.log('onManufactureSelect -> ', event.target.value);
               setSelectedManufacture(event.target.value as string);
             }}
             displayEmpty
-            className={classes.selectEmpty}
-          >
-            {manufactureList.map((manufacture) => <MenuItem key={manufacture} value={manufacture}>{manufacture}</MenuItem>)}
+            className={classes.selectEmpty}>
+            {manufactureList.map(manufacture => (
+              <MenuItem key={manufacture} value={manufacture}>
+                {manufacture}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
       <div className={classes.buttonContainer}>
         <Button
           text="Filter"
-          onPress={() => onFilter({
-            color: selectedColor,
-            manufacture: selectedManufacture,
-          })}
+          onPress={() =>
+            onFilter({
+              color: selectedColor,
+              manufacture: selectedManufacture,
+            })
+          }
         />
       </div>
     </div>
