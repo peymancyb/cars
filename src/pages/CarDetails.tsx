@@ -61,7 +61,12 @@ function CardDetails() {
       <div className="car-details-container">
         <div className="car-image-container">
           <img
-            style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}}
+            style={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              display: 'block',
+              height: '300px',
+            }}
             src={carDetails.pictureUrl}
             alt={`car-${carDetails.stockNumber}`}
           />
