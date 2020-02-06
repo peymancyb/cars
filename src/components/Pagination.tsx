@@ -11,42 +11,37 @@ interface ITextLink {
   href: string;
 }
 
-function TextLink({ text, href }: ITextLink) {
+function TextLink({text, href}: ITextLink) {
   return (
     <Link
       color="inherit"
       noWrap
       variant="body2"
       href={href}
-      className="details-text"
-    >
+      className="details-text">
       {text}
     </Link>
   );
 }
 
-function Pagination({ totalPageCount, loading }: IPagination) {
-  if(loading) {
+function Pagination({totalPageCount, loading}: IPagination) {
+  if (loading) {
     return null;
   }
-  
+
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginLeft: 100,
-      marginRight: 100,
-    }}
-    >
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 100,
+        marginRight: 100,
+      }}>
       <TextLink text="First" href="/" />
       <TextLink text="Previous" href="/" />
-      <p>
-        Page 1 of
-        {' '}
-        {totalPageCount}
-      </p>
+      <p>Page 1 of {totalPageCount}</p>
       <TextLink text="Next" href="/" />
       <TextLink text="Last" href="/" />
     </div>

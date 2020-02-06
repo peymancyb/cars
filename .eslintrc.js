@@ -6,8 +6,9 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    "tslint:latest",
-    "tslint-config-prettier"
+    "plugin:prettier/recommended", 
+    "prettier/react", 
+    "prettier/standard",
   ],
   globals: {
     Atomics: 'readonly',
@@ -24,8 +25,11 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'prettier',
+    'react-hooks'
   ],
   rules: {
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }]
   }
 };

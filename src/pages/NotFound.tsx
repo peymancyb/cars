@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Layout from '../components/Layout';
 
@@ -22,7 +22,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-
 function NotFound() {
   const classes = useStyles();
 
@@ -35,10 +34,7 @@ function NotFound() {
         <p>
           You can always go back to
           <span>
-            <Link
-              href="/"
-              className={classes.link}
-            >
+            <Link href="/" className={classes.link}>
               homepage.
             </Link>
           </span>

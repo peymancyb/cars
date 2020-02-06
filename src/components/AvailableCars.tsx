@@ -6,23 +6,19 @@ interface IAvailableCars {
   loading: boolean;
 }
 
-function AvailableCars({ totalCarsCount, carListCount, loading }:IAvailableCars) {
-  if(loading){
+function AvailableCars({
+  totalCarsCount,
+  carListCount,
+  loading,
+}: IAvailableCars) {
+  if (loading) {
     return null;
   }
   return (
     <div>
       <p className="head-text">Available cars</p>
       <p className="result-text">
-        Showing
-        {' '}
-        {carListCount}
-        {' '}
-        of
-        {' '}
-        {totalCarsCount}
-        {' '}
-        results
+        Showing {carListCount} of {totalCarsCount} results
       </p>
     </div>
   );

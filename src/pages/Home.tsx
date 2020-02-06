@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Layout from '../components/Layout';
 import FilterForm from '../components/FilterForm';
@@ -35,7 +35,7 @@ interface ICarsList {
   totalCarsCount: number;
 }
 
-interface IFilterState{
+interface IFilterState {
   color: string;
   manufacture: string;
 }
@@ -54,7 +54,9 @@ const mockArray = new Array(10).fill({}).map(() => ({
 }));
 
 function getManufacturersNames(manufacturersList: IManufacture[]) {
-  return manufacturersList.map((manufacturer: IManufacture) => manufacturer.name);
+  return manufacturersList.map(
+    (manufacturer: IManufacture) => manufacturer.name,
+  );
 }
 
 function Home() {
@@ -65,7 +67,9 @@ function Home() {
     totalCarsCount: 0,
   });
   const [colors, setColors] = useState<string[]>(['All car colors']);
-  const [manufactureList, setManufactureList] = useState<string[]>(['All manufacturers']);
+  const [manufactureList, setManufactureList] = useState<string[]>([
+    'All manufacturers',
+  ]);
   const [filter, setFilter] = useState<IFilterState>({
     color: 'All car colors',
     manufacture: 'All manufacturers',
@@ -78,20 +82,25 @@ function Home() {
       const manufacturersList = await CarApi.getManufacturersList();
       const carList = await CarApi.getCarList();
       const manufacturersNames = getManufacturersNames(manufacturersList);
-      setColors((prevState) => ([...prevState, ...colorsList]));
+      setColors(prevState => [...prevState, ...colorsList]);
       setCarsList(carList);
-      setManufactureList((prevState) => ([...prevState, ...manufacturersNames]));
+      setManufactureList(prevState => [...prevState, ...manufacturersNames]);
       setLoading(false);
     } catch (error) {
       console.log('error =>', error);
     }
   }, []);
 
-  const getFilteredList = (cars: ICar[]) => cars.filter((car: ICar) => {
-    const isManufacturer = (filter.manufacture === 'All manufacturers') ? true : car.manufacturerName === filter.manufacture;
-    const isColor = (filter.color === 'All car colors') ? true : car.color === filter.color;
-    return isColor && isManufacturer;
-  });
+  const getFilteredList = (cars: ICar[]) =>
+    cars.filter((car: ICar) => {
+      const isManufacturer =
+        filter.manufacture === 'All manufacturers'
+          ? true
+          : car.manufacturerName === filter.manufacture;
+      const isColor =
+        filter.color === 'All car colors' ? true : car.color === filter.color;
+      return isColor && isManufacturer;
+    });
 
   useEffect(() => {
     getInitialState();
@@ -114,7 +123,10 @@ function Home() {
             loading={loading}
           />
           <CarList loading={loading} cars={getFilteredList(carsList.cars)} />
-          <Pagination totalPageCount={carsList.totalPageCount} loading={loading}/>
+          <Pagination
+            totalPageCount={carsList.totalPageCount}
+            loading={loading}
+          />
         </Grid>
       </Grid>
     </Layout>

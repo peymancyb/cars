@@ -40,7 +40,9 @@ export default function Header() {
     <div>
       <Toolbar className={classes.toolbar}>
         <div>
-          <img src={Logo} alt="logo" style={{ width: 150 }} />
+          <a href="/">
+            <img src={Logo} alt="logo" style={{ width: 150 }} />
+          </a>
         </div>
         <div>
           {links.map((link) => (

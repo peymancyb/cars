@@ -49,7 +49,7 @@ class CarApi {
   static async getCarList<ICars>() {
     let carList;
     try {
-      const { data } = await axios.get(`${CarApi.baseUrl}cars/`);
+      const {data} = await axios.get(`${CarApi.baseUrl}cars/`);
       carList = data;
     } catch (error) {
       console.log('getCarList: error => ', error);
@@ -60,7 +60,7 @@ class CarApi {
   static async getManufacturersList<IManufactures>() {
     let manufactureList = [];
     try {
-      const { data } = await axios.get(`${CarApi.baseUrl}manufacturers/`);
+      const {data} = await axios.get(`${CarApi.baseUrl}manufacturers/`);
       manufactureList = data.manufacturers;
     } catch (error) {
       console.log('getCarList: error => ', error);
@@ -72,7 +72,7 @@ class CarApi {
   static async getColorsList<IColors>() {
     let colors = [];
     try {
-      const { data } = await axios.get(`${CarApi.baseUrl}colors/`);
+      const {data} = await axios.get(`${CarApi.baseUrl}colors/`);
       colors = data.colors;
     } catch (error) {
       console.log('getCarList: error => ', error);
@@ -83,7 +83,7 @@ class CarApi {
   static async getCarByStockNumber<ICar>(stocknumber: number) {
     let car;
     try {
-      const { data } = await axios.get(`${CarApi.baseUrl}cars/${stocknumber}`);
+      const {data} = await axios.get(`${CarApi.baseUrl}cars/${stocknumber}`);
       car = data;
     } catch (error) {
       console.log('getCarList: error => ', error);
@@ -91,6 +91,5 @@ class CarApi {
     return car;
   }
 }
-
 
 export default CarApi;
