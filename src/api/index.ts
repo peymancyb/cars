@@ -1,15 +1,6 @@
 import axios from 'axios';
 
-/**
- * cars
- * cars/{stocknumber}
- * colors/
- * manufacturers/
- */
-
-interface IColors {
-  colors: string[];
-}
+type IColors = string[];
 
 interface ICarModel {
   name: string;
@@ -20,9 +11,7 @@ interface IManufacture {
   models: ICarModel[];
 }
 
-interface IManufactures {
-  manufacturers: IManufacture[];
-}
+type IManufactures = IManufacture[];
 
 interface ICar {
   stockNumber: number;
@@ -43,13 +32,17 @@ interface ICars {
   cars: ICar[];
 }
 
-class CarApi {
-  static baseUrl = 'https://auto1-mock-server.herokuapp.com/api/';
+interface IStockNumberData {
+  car: ICar;
+}
 
-  static async getCarList<ICars>() {
+const endpointUrl = 'https://auto1-mock-server.herokuapp.com/api/';
+
+class CarApi {
+  static async getCarList(): Promise<ICars> {
     let carList;
     try {
-      const {data} = await axios.get(`${CarApi.baseUrl}cars/`);
+      const {data} = await axios.get(`${endpointUrl}cars/`);
       carList = data;
     } catch (error) {
       console.log('getCarList: error => ', error);
@@ -57,22 +50,21 @@ class CarApi {
     return carList;
   }
 
-  static async getManufacturersList<IManufactures>() {
+  static async getManufacturersList(): Promise<IManufactures> {
     let manufactureList = [];
     try {
-      const {data} = await axios.get(`${CarApi.baseUrl}manufacturers/`);
+      const {data} = await axios.get(`${endpointUrl}manufacturers/`);
       manufactureList = data.manufacturers;
     } catch (error) {
       console.log('getCarList: error => ', error);
     }
-
     return manufactureList;
   }
 
-  static async getColorsList<IColors>() {
+  static async getColorsList(): Promise<IColors> {
     let colors = [];
     try {
-      const {data} = await axios.get(`${CarApi.baseUrl}colors/`);
+      const {data} = await axios.get(`${endpointUrl}colors/`);
       colors = data.colors;
     } catch (error) {
       console.log('getCarList: error => ', error);
@@ -80,10 +72,12 @@ class CarApi {
     return colors;
   }
 
-  static async getCarByStockNumber<ICar>(stocknumber: number) {
+  static async getCarByStockNumber(
+    stocknumber: string,
+  ): Promise<IStockNumberData> {
     let car;
     try {
-      const {data} = await axios.get(`${CarApi.baseUrl}cars/${stocknumber}`);
+      const {data} = await axios.get(`${endpointUrl}cars/${stocknumber}`);
       car = data;
     } catch (error) {
       console.log('getCarList: error => ', error);

@@ -59,6 +59,9 @@ function getManufacturersNames(manufacturersList: IManufacture[]) {
   );
 }
 
+const allColors = 'All car colors';
+const allManufacturers = 'All manufacturers';
+
 function Home() {
   const [loading, setLoading] = useState<boolean>(true);
   const [carsList, setCarsList] = useState<ICarsList>({
@@ -66,21 +69,24 @@ function Home() {
     totalPageCount: 0,
     totalCarsCount: 0,
   });
-  const [colors, setColors] = useState<string[]>(['All car colors']);
+  const [colors, setColors] = useState<string[]>([allColors]);
   const [manufactureList, setManufactureList] = useState<string[]>([
-    'All manufacturers',
+    allManufacturers,
   ]);
   const [filter, setFilter] = useState<IFilterState>({
-    color: 'All car colors',
-    manufacture: 'All manufacturers',
+    color: allColors,
+    manufacture: allManufacturers,
   });
+  const [filteredCarList, setFilteredCarList] = useState<ICar[]>([]);
 
   const getInitialState = useCallback(async () => {
     try {
       setLoading(true);
-      const colorsList = await CarApi.getColorsList();
-      const manufacturersList = await CarApi.getManufacturersList();
-      const carList = await CarApi.getCarList();
+      const [colorsList, manufacturersList, carList] = await Promise.all([
+        CarApi.getColorsList(),
+        CarApi.getManufacturersList(),
+        CarApi.getCarList(),
+      ]);
       const manufacturersNames = getManufacturersNames(manufacturersList);
       setColors(prevState => [...prevState, ...colorsList]);
       setCarsList(carList);
@@ -91,20 +97,24 @@ function Home() {
     }
   }, []);
 
-  const getFilteredList = (cars: ICar[]) =>
-    cars.filter((car: ICar) => {
+  const updateFilterList = useCallback(() => {
+    const filteredList = carsList.cars.filter((car: ICar) => {
       const isManufacturer =
-        filter.manufacture === 'All manufacturers'
-          ? true
-          : car.manufacturerName === filter.manufacture;
-      const isColor =
-        filter.color === 'All car colors' ? true : car.color === filter.color;
+        filter.manufacture === allManufacturers ||
+        car.manufacturerName === filter.manufacture;
+      const isColor = filter.color === allColors || car.color === filter.color;
       return isColor && isManufacturer;
     });
+    setFilteredCarList(filteredList);
+  }, [filter, carsList.cars]);
+
+  useEffect(() => {
+    updateFilterList();
+  }, [filter, carsList.cars, updateFilterList]);
 
   useEffect(() => {
     getInitialState();
-  }, []);
+  }, [getInitialState]);
 
   return (
     <Layout>
@@ -118,11 +128,11 @@ function Home() {
         </Grid>
         <Grid item xs={12} sm={7}>
           <AvailableCars
-            carListCount={carsList.cars.length}
+            carListCount={filteredCarList.length}
             totalCarsCount={carsList.totalCarsCount}
             loading={loading}
           />
-          <CarList loading={loading} cars={getFilteredList(carsList.cars)} />
+          <CarList loading={loading} cars={filteredCarList} />
           <Pagination
             totalPageCount={carsList.totalPageCount}
             loading={loading}

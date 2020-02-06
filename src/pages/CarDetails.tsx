@@ -3,7 +3,6 @@ import {useParams} from 'react-router-dom';
 import Layout from '../components/Layout';
 import CarApi from '../api';
 import Button from '../components/Button';
-import brandColors from '../constants/colors';
 
 interface ICar {
   stockNumber: number;
@@ -24,16 +23,28 @@ function CardDetails() {
 
   const getCar = useCallback(async () => {
     try {
-      const {car} = await CarApi.getCarByStockNumber(Number(stockNumber));
+      const {car} = await CarApi.getCarByStockNumber(stockNumber!);
       setCarDetails(car);
     } catch (error) {
       console.log('error -> ', error);
     }
-  }, []);
+  }, [stockNumber]);
 
   useEffect(() => {
     getCar();
-  }, []);
+  }, [getCar]);
+
+  const getCarName = () => {
+    const {manufacturerName, modelName} = carDetails!;
+    return `${manufacturerName} ${modelName}`;
+  };
+
+  const getCarDetails = () => {
+    const {mileage, fuelType, color} = carDetails!;
+    return `Stock #${carDetails!.stockNumber} - ${
+      mileage.number
+    } ${mileage.unit.toUpperCase()} - ${fuelType} - ${color}`;
+  };
 
   if (!carDetails) {
     return null;
@@ -41,34 +52,18 @@ function CardDetails() {
 
   return (
     <Layout>
-      <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <div className="car-details-container">
+        <div className="car-image-container">
           <img
             style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}}
             src={carDetails.pictureUrl}
             alt={`car-${carDetails.stockNumber}`}
           />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 24,
-            marginLeft: 48,
-            marginRight: 48,
-          }}>
-          <div style={{flex: 2}}>
-            <p className="head-text">
-              {carDetails.manufacturerName} {carDetails.modelName}
-            </p>
-            <p>
-              {`Stock #${carDetails?.stockNumber} - ${
-                carDetails?.mileage.number
-              } ${carDetails?.mileage.unit.toUpperCase()} - ${
-                carDetails?.fuelType
-              } - ${carDetails?.color}`}
-            </p>
+        <div className="car-details-view">
+          <div style={{width: 450}}>
+            <p className="head-text">{getCarName()}</p>
+            <p>{getCarDetails()}</p>
             <p>
               This car is currently available and can be delivered as soon as
               tomorrow morning. Please be aware that delivery times shown in
@@ -76,15 +71,7 @@ function CardDetails() {
               conditions.
             </p>
           </div>
-          <div
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              borderStyle: 'solid',
-              borderWidth: 1,
-              borderColor: brandColors.silver,
-              padding: 24,
-            }}>
+          <div className="save-box">
             <p>
               If you like this car, click the button and save it in your
               collection of favourite items.
