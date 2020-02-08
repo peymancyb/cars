@@ -43,6 +43,33 @@ interface IFilterForm {
   onFilter: (filterOptions: IFilterOptions) => void;
 }
 
+interface IFilterSelect {
+  children?: React.ReactNode;
+  labelText: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+function FilterSelect({labelText, value, onChange, children}: IFilterSelect) {
+  const classes = useStyles();
+  return (
+    <FormControl variant="outlined" className={classes.formControl}>
+      <FormLabel htmlFor={`color-label-${labelText}`}>{labelText}</FormLabel>
+      <Select
+        labelId={`color-label-${labelText}`}
+        id={`color-label-${labelText}-id`}
+        value={value}
+        onChange={(event: React.ChangeEvent<{value: unknown}>) => {
+          onChange(event.target.value as string);
+        }}
+        displayEmpty
+        className={classes.selectEmpty}>
+        {children}
+      </Select>
+    </FormControl>
+  );
+}
+
 function FilterForm({
   colors,
   manufactureList,
@@ -59,60 +86,36 @@ function FilterForm({
   return (
     <div className={classes.container}>
       <div>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <FormLabel htmlFor="color-label">Color</FormLabel>
-          <Select
-            labelId="color-label"
-            id="color-label-id"
-            value={selectedColor}
-            onChange={(event: React.ChangeEvent<{value: unknown}>) => {
-              setSelectedColor(event.target.value as string);
-            }}
-            displayEmpty
-            className={classes.selectEmpty}>
-            {colors.map(color => (
-              <MenuItem key={color} value={color}>
-                {color}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <FormLabel htmlFor="Manufacturer-label">Manufacturer</FormLabel>
-          <Select
-            labelId="Manufacturer-label"
-            id="Manufacturer-label-id"
-            value={selectedManufacture}
-            onChange={(event: React.ChangeEvent<{value: unknown}>) => {
-              setSelectedManufacture(event.target.value as string);
-            }}
-            displayEmpty
-            className={classes.selectEmpty}>
-            {manufactureList.map(manufacture => (
-              <MenuItem key={manufacture} value={manufacture}>
-                {manufacture}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <FormLabel htmlFor="Manufacturer-label">Sort by</FormLabel>
-          <Select
-            labelId="Manufacturer-label"
-            id="Manufacturer-label-id"
-            value={selectedSort}
-            onChange={(event: React.ChangeEvent<{value: unknown}>) => {
-              setSelectedSort(event.target.value as string);
-            }}
-            displayEmpty
-            className={classes.selectEmpty}>
-            {sortList.map(sort => (
-              <MenuItem key={sort.value} value={sort.value}>
-                {sort.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <FilterSelect
+          labelText="Color"
+          value={selectedColor}
+          onChange={setSelectedColor}>
+          {colors.map(color => (
+            <MenuItem key={color} value={color}>
+              {color}
+            </MenuItem>
+          ))}
+        </FilterSelect>
+        <FilterSelect
+          labelText="Manufacturer"
+          value={selectedManufacture}
+          onChange={setSelectedManufacture}>
+          {manufactureList.map(manufacture => (
+            <MenuItem key={manufacture} value={manufacture}>
+              {manufacture}
+            </MenuItem>
+          ))}
+        </FilterSelect>
+        <FilterSelect
+          labelText="Sort by"
+          value={selectedSort}
+          onChange={setSelectedSort}>
+          {sortList.map(sort => (
+            <MenuItem key={sort.value} value={sort.value}>
+              {sort.title}
+            </MenuItem>
+          ))}
+        </FilterSelect>
       </div>
       <div className={classes.buttonContainer}>
         <Button

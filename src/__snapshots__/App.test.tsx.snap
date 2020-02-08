@@ -68,7 +68,7 @@ exports[`(App) routing/navigating (Home) component should be render by default w
             >
               <label
                 class="MuiFormLabel-root MuiFormLabel-filled"
-                for="color-label"
+                for="color-label-Color"
               >
                 Color
               </label>
@@ -77,9 +77,9 @@ exports[`(App) routing/navigating (Home) component should be render by default w
               >
                 <div
                   aria-haspopup="listbox"
-                  aria-labelledby="color-label color-label-id"
+                  aria-labelledby="color-label-Color color-label-Color-id"
                   class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
-                  id="color-label-id"
+                  id="color-label-Color-id"
                   role="button"
                   tabindex="0"
                 >
@@ -121,7 +121,7 @@ exports[`(App) routing/navigating (Home) component should be render by default w
             >
               <label
                 class="MuiFormLabel-root MuiFormLabel-filled"
-                for="Manufacturer-label"
+                for="color-label-Manufacturer"
               >
                 Manufacturer
               </label>
@@ -130,9 +130,9 @@ exports[`(App) routing/navigating (Home) component should be render by default w
               >
                 <div
                   aria-haspopup="listbox"
-                  aria-labelledby="Manufacturer-label Manufacturer-label-id"
+                  aria-labelledby="color-label-Manufacturer color-label-Manufacturer-id"
                   class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
-                  id="Manufacturer-label-id"
+                  id="color-label-Manufacturer-id"
                   role="button"
                   tabindex="0"
                 >
@@ -174,7 +174,7 @@ exports[`(App) routing/navigating (Home) component should be render by default w
             >
               <label
                 class="MuiFormLabel-root"
-                for="Manufacturer-label"
+                for="color-label-Sort by"
               >
                 Sort by
               </label>
@@ -183,9 +183,9 @@ exports[`(App) routing/navigating (Home) component should be render by default w
               >
                 <div
                   aria-haspopup="listbox"
-                  aria-labelledby="Manufacturer-label Manufacturer-label-id"
+                  aria-labelledby="color-label-Sort by color-label-Sort by-id"
                   class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
-                  id="Manufacturer-label-id"
+                  id="color-label-Sort by-id"
                   role="button"
                   tabindex="0"
                 >
