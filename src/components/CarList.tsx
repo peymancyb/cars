@@ -120,7 +120,7 @@ function CarItem({loading, car, removable, onRemoveItem}: ILoadingCarItem) {
 
 function CarList({loading, cars, removable, onRemoveItem}: ICarList) {
   return (
-    <div>
+    <div data-testid="car-list-component">
       {cars.map(car => (
         <CarItem
           key={car.stockNumber}

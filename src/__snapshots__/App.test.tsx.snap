@@ -242,7 +242,9 @@ exports[`(App) routing/navigating (Home) component should be render by default w
       <div
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-7"
       >
-        <div>
+        <div
+          data-testid="car-list-component"
+        >
           <div
             class="makeStyles-cardContainer-229"
           >
