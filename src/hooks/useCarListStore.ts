@@ -1,98 +1,73 @@
-import {useCallback, useEffect, useState} from 'react';
-import CarApi, {IManufacture, ICars} from '../api';
-
-interface IFilterState {
-  color: string;
-  manufacture: string;
-}
-
-interface IFormOptions {
-  colors: string[];
-  manufacturers: string[];
-}
-
-interface IPaginationState {
-  active: number;
-  total: number;
-}
-
-const mockArray = new Array(10).fill({}).map(() => ({
-  stockNumber: Math.random() * 100 + 1,
-  manufacturerName: '',
-  modelName: '',
-  color: '',
-  mileage: {
-    number: 1,
-    unit: 'km',
-  },
-  fuelType: '',
-  pictureUrl: '',
-}));
-
-const allColors = 'All car colors';
-const allManufacturers = 'All manufacturers';
-
-function getManufacturersNames(manufacturersList: IManufacture[]) {
-  return manufacturersList.map(
-    (manufacturer: IManufacture) => manufacturer.name,
-  );
-}
+import {useCallback, useEffect, useReducer} from 'react';
+import CarApi from '../api';
+import carListReducer, {
+  carListInitialState,
+  types,
+  IFilterOptions,
+  allColors,
+  allManufacturers,
+} from './carListReducer';
+import {getManufacturersNames} from '../helpers';
 
 function useCarListStore() {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [pagination, setPagination] = useState<IPaginationState>({
-    active: 1,
-    total: 1,
-  });
-  const [carsList, setCarsList] = useState<ICars>({
-    cars: mockArray,
-    totalPageCount: 0,
-    totalCarsCount: 0,
-  });
-  const [formOptions, setFormOptions] = useState<IFormOptions>({
-    colors: [allColors],
-    manufacturers: [allManufacturers],
-  });
-  const [filter, setFilter] = useState<IFilterState>({
-    color: allColors,
-    manufacture: allManufacturers,
-  });
+  const [state, dispatch] = useReducer(carListReducer, carListInitialState);
+  console.log('useCarListStore:state -> ', state);
+  const setLoading = (isLoading: boolean) => {
+    dispatch({
+      type: types.LOADING_STATE_CHANGED,
+      data: isLoading,
+    });
+  };
 
-  const updateCarList = useCallback(
-    async (shouldReset?: boolean) => {
-      const manufacture =
-        filter.manufacture === allManufacturers ? '' : filter.manufacture;
-      const color = filter.color === allColors ? '' : filter.color;
-      try {
-        setLoading(true);
-        window.scrollTo(0, 0);
-        const carList = await CarApi.getCarList(
-          pagination.active,
-          manufacture,
-          color,
-        );
-        setCarsList(() => carList);
-        setPagination(prevState => ({
-          active: shouldReset ? 1 : prevState.active,
-          total: carList.totalPageCount,
-        }));
-        setLoading(false);
-      } catch (error) {
-        console.log('updateCarList:error', error);
-      }
-    },
-    [filter, pagination],
-  );
+  const getCarList = useCallback(async () => {
+    const manufacture =
+      state.filter.manufacture === allManufacturers
+        ? ''
+        : state.filter.manufacture;
+    const color = state.filter.color === allColors ? '' : state.filter.color;
+    const {sortBy} = state.filter;
+    console.log('sortBy: filter -> ', sortBy);
+    const activePage = state.pagination.active;
+    window.scrollTo(0, 0);
+    const carList = await CarApi.getCarList(
+      activePage,
+      manufacture,
+      color,
+      sortBy,
+    );
+    dispatch({
+      type: types.SET_CAR_LIST,
+      data: carList,
+    });
+    dispatch({
+      type: types.PAGINATION_TOTAL_CHANGED,
+      data: carList.totalPageCount,
+    });
+  }, [state.filter, state.pagination]);
+
+  const updateCarList = useCallback(async () => {
+    try {
+      setLoading(true);
+      await getCarList();
+      setLoading(false);
+    } catch (error) {
+      console.log('updateCarList:error', error);
+    }
+  }, [getCarList]);
 
   const onChangePage = useCallback(
-    page => {
-      const newPage = page < 1 ? 1 : page;
-      setPagination(prevState => ({
-        ...prevState,
-        active: newPage > pagination.total ? pagination.total : newPage,
-      }));
+    async page => {
+      let selectedPage = page;
+      const {total} = state.pagination;
+      selectedPage = selectedPage > total ? total : selectedPage;
+      selectedPage = selectedPage < 1 ? 1 : selectedPage;
+      dispatch({
+        type: types.PAGINATION_ACTIVE_CHANGED,
+        data: selectedPage,
+      });
+      updateCarList();
     },
-    [pagination],
+    [state.pagination, updateCarList],
   );
 
   const getInitialState = useCallback(async () => {
@@ -101,34 +76,51 @@ function useCarListStore() {
       const [colorsList, manufacturersList] = await Promise.all([
         CarApi.getColorsList(),
         CarApi.getManufacturersList(),
+        getCarList(),
       ]);
       const manufacturersNames = getManufacturersNames(manufacturersList);
-      setFormOptions(prevState => ({
-        colors: [...prevState.colors, ...colorsList],
-        manufacturers: [...prevState.manufacturers, ...manufacturersNames],
-      }));
-      await updateCarList();
+      dispatch({
+        type: types.SET_FORM_OPTIONS,
+        data: {
+          ...state.formOptions,
+          colors: [...state.formOptions.colors, ...colorsList],
+          manufacturers: [
+            ...state.formOptions.manufacturers,
+            ...manufacturersNames,
+          ],
+        },
+      });
+      setLoading(false);
     } catch (error) {
-      console.log('error', error);
+      console.log('error -> ', error);
     }
+  }, [getCarList, state.formOptions]);
+
+  useEffect(() => {
+    getInitialState();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
+  const setFilter = (filterOptions: IFilterOptions) => {
+    console.log('filterOptions -> ', filterOptions);
+    dispatch({
+      type: types.SET_FILTER_OPTIONS,
+      data: filterOptions,
+    });
+    dispatch({
+      type: types.PAGINATION_ACTIVE_CHANGED,
+      data: 1,
+    });
     updateCarList();
-  }, [pagination.active]);
-
-  useEffect(() => {
-    updateCarList(true);
-  }, [filter]);
+  };
 
   return {
-    loading,
-    carsList,
-    formOptions,
+    loading: state.loading,
+    carsList: state.carsList,
+    formOptions: state.formOptions,
     setFilter,
-    pagination,
+    pagination: state.pagination,
     onChangePage,
-    getInitialState,
   };
 }
 

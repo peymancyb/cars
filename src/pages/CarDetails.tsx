@@ -20,7 +20,7 @@ function CardDetails() {
     } catch (error) {
       history.push('/');
     }
-  }, [stockNumber]);
+  }, [stockNumber, history]);
 
   useEffect(() => {
     getCar();

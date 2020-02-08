@@ -43,11 +43,13 @@ class CarApi {
     page: number = 1,
     manufacturer: string = '',
     color: string = '',
+    srotBy: string = '',
   ): Promise<ICars> {
+    console.log('srotBy -> ', srotBy);
     let carList;
     try {
       const {data} = await axios.get(
-        `${endpointUrl}cars/?page=${page}&manufacturer=${manufacturer}&color=${color}&sort=asc`,
+        `${endpointUrl}cars/?page=${page}&manufacturer=${manufacturer}&color=${color}&sort=${srotBy} `,
       );
       carList = data;
     } catch (error) {

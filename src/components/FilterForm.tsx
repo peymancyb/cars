@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {makeStyles} from '@material-ui/core/styles';
 import brandColors from '../constants/colors';
 import Button from './Button';
+import {ISort, IFilterOptions} from '../hooks/carListReducer';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -35,24 +36,26 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-interface IFilterOptions {
-  color: string;
-  manufacture: string;
-}
-
 interface IFilterForm {
   manufactureList: string[];
   colors: string[];
+  sortList: ISort[];
   onFilter: (filterOptions: IFilterOptions) => void;
 }
 
-function FilterForm({colors, manufactureList, onFilter}: IFilterForm) {
+function FilterForm({
+  colors,
+  manufactureList,
+  sortList,
+  onFilter,
+}: IFilterForm) {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedManufacture, setSelectedManufacture] = useState(
     manufactureList[0],
   );
-
+  const [selectedSort, setSelectedSort] = useState(sortList[0].value);
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <div>
@@ -92,6 +95,24 @@ function FilterForm({colors, manufactureList, onFilter}: IFilterForm) {
             ))}
           </Select>
         </FormControl>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <FormLabel htmlFor="Manufacturer-label">Sort by</FormLabel>
+          <Select
+            labelId="Manufacturer-label"
+            id="Manufacturer-label-id"
+            value={selectedSort}
+            onChange={(event: React.ChangeEvent<{value: unknown}>) => {
+              setSelectedSort(event.target.value as string);
+            }}
+            displayEmpty
+            className={classes.selectEmpty}>
+            {sortList.map(sort => (
+              <MenuItem key={sort.value} value={sort.value}>
+                {sort.title}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </div>
       <div className={classes.buttonContainer}>
         <Button
@@ -100,6 +121,7 @@ function FilterForm({colors, manufactureList, onFilter}: IFilterForm) {
             onFilter({
               color: selectedColor,
               manufacture: selectedManufacture,
+              sortBy: selectedSort,
             })
           }
         />

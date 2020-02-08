@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Layout from '../components/Layout';
 import FilterForm from '../components/FilterForm';
@@ -15,13 +15,8 @@ function Home() {
     setFilter,
     pagination,
     onChangePage,
-    getInitialState,
   } = useCarListStore();
   const shownCarListCount = 10 * (pagination.active - 1) + carsList.cars.length;
-
-  useEffect(() => {
-    getInitialState();
-  }, [getInitialState]);
 
   return (
     <Layout>
@@ -30,6 +25,7 @@ function Home() {
           <FilterForm
             colors={formOptions.colors}
             manufactureList={formOptions.manufacturers}
+            sortList={formOptions.sortList}
             onFilter={setFilter}
           />
         </Grid>
