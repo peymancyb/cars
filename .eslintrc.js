@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    "jest/globals": true
   },
   extends: [
     'plugin:react/recommended',
@@ -26,7 +27,8 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'prettier',
-    'react-hooks'
+    'react-hooks',
+    'jest'
   ],
   rules: {
     "prettier/prettier": "error",
@@ -45,7 +47,12 @@ module.exports = {
       }
     ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
   "settings": {
     "import/resolver": {
