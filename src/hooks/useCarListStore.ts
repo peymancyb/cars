@@ -11,7 +11,6 @@ import {getManufacturersNames} from '../helpers';
 
 function useCarListStore() {
   const [state, dispatch] = useReducer(carListReducer, carListInitialState);
-  console.log('useCarListStore:state -> ', state);
   const setLoading = (isLoading: boolean) => {
     dispatch({
       type: types.LOADING_STATE_CHANGED,
@@ -19,15 +18,13 @@ function useCarListStore() {
     });
   };
 
-  const getCarList = useCallback(async () => {
+  const getCarList = useCallback(async (filterOptions, activePage) => {
     const manufacture =
-      state.filter.manufacture === allManufacturers
+      filterOptions.manufacture === allManufacturers
         ? ''
-        : state.filter.manufacture;
-    const color = state.filter.color === allColors ? '' : state.filter.color;
-    const {sortBy} = state.filter;
-    console.log('sortBy: filter -> ', sortBy);
-    const activePage = state.pagination.active;
+        : filterOptions.manufacture;
+    const color = filterOptions.color === allColors ? '' : filterOptions.color;
+    const {sortBy} = filterOptions;
     window.scrollTo(0, 0);
     const carList = await CarApi.getCarList(
       activePage,
@@ -43,17 +40,20 @@ function useCarListStore() {
       type: types.PAGINATION_TOTAL_CHANGED,
       data: carList.totalPageCount,
     });
-  }, [state.filter, state.pagination]);
+  }, []);
 
-  const updateCarList = useCallback(async () => {
-    try {
-      setLoading(true);
-      await getCarList();
-      setLoading(false);
-    } catch (error) {
-      console.log('updateCarList:error', error);
-    }
-  }, [getCarList]);
+  const updateCarList = useCallback(
+    async (filterOptions, selectedPage) => {
+      try {
+        setLoading(true);
+        await getCarList(filterOptions, selectedPage);
+        setLoading(false);
+      } catch (error) {
+        console.log('updateCarList:error', error);
+      }
+    },
+    [getCarList],
+  );
 
   const onChangePage = useCallback(
     async page => {
@@ -65,9 +65,9 @@ function useCarListStore() {
         type: types.PAGINATION_ACTIVE_CHANGED,
         data: selectedPage,
       });
-      updateCarList();
+      updateCarList(state.filter, selectedPage);
     },
-    [state.pagination, updateCarList],
+    [state.filter, state.pagination, updateCarList],
   );
 
   const getInitialState = useCallback(async () => {
@@ -76,7 +76,7 @@ function useCarListStore() {
       const [colorsList, manufacturersList] = await Promise.all([
         CarApi.getColorsList(),
         CarApi.getManufacturersList(),
-        getCarList(),
+        getCarList(state.filter, state.pagination.active),
       ]);
       const manufacturersNames = getManufacturersNames(manufacturersList);
       dispatch({
@@ -94,7 +94,7 @@ function useCarListStore() {
     } catch (error) {
       console.log('error -> ', error);
     }
-  }, [getCarList, state.formOptions]);
+  }, [getCarList, state.filter, state.formOptions, state.pagination.active]);
 
   useEffect(() => {
     getInitialState();
@@ -102,16 +102,16 @@ function useCarListStore() {
   }, []);
 
   const setFilter = (filterOptions: IFilterOptions) => {
-    console.log('filterOptions -> ', filterOptions);
+    const firstPage = 1;
     dispatch({
       type: types.SET_FILTER_OPTIONS,
       data: filterOptions,
     });
     dispatch({
       type: types.PAGINATION_ACTIVE_CHANGED,
-      data: 1,
+      data: firstPage,
     });
-    updateCarList();
+    updateCarList(filterOptions, firstPage);
   };
 
   return {

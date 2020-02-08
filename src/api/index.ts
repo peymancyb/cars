@@ -45,7 +45,6 @@ class CarApi {
     color: string = '',
     srotBy: string = '',
   ): Promise<ICars> {
-    console.log('srotBy -> ', srotBy);
     let carList;
     try {
       const {data} = await axios.get(
