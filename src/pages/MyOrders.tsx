@@ -21,7 +21,7 @@ function MyOrders() {
           loading={false}
           cars={cars}
           removable
-          onRemoveItem={stockNumber => onRemoveCar(stockNumber)}
+          onRemoveItem={onRemoveCar}
         />
       )}
     </Layout>

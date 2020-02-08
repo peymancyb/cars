@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import CarDetails from './pages/CarDetails';
 import NotFound from './pages/NotFound';
 import MyOrders from './pages/MyOrders';
-import './App.css';
 
 const App = () => (
   <Router>

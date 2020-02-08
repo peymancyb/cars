@@ -1,31 +1,21 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import Layout from '../components/Layout';
-import CarApi from '../api';
+import CarApi, {ICar} from '../api';
 import Button from '../components/Button';
 import LocalStorage from '../api/localStorage';
 
-interface ICar {
-  stockNumber: number;
-  manufacturerName: string;
-  modelName: string;
-  color: string;
-  mileage: {
-    number: number;
-    unit: string;
-  };
-  fuelType: string;
-  pictureUrl: string;
-}
-
 function CardDetails() {
   const [carDetails, setCarDetails] = useState<ICar | null>(null);
+  const [isSave, setIsSave] = useState(false);
   const {stockNumber} = useParams();
   const history = useHistory();
 
   const getCar = useCallback(async () => {
     try {
       const {car} = await CarApi.getCarByStockNumber(stockNumber!);
+      const isSaved = LocalStorage.isCarSaved(car.stockNumber);
+      setIsSave(isSaved);
       setCarDetails(car);
     } catch (error) {
       history.push('/');
@@ -48,8 +38,13 @@ function CardDetails() {
     } ${mileage.unit.toUpperCase()} - ${fuelType} - ${color}`;
   };
 
-  const addToLocalStorage = () => {
-    LocalStorage.addCar(carDetails!);
+  const handleOnSaveOrRemove = () => {
+    if (!isSave) {
+      LocalStorage.addCar(carDetails!);
+    } else {
+      LocalStorage.removeCar(carDetails!.stockNumber);
+    }
+    setIsSave(!isSave);
   };
 
   if (!carDetails) {
@@ -61,18 +56,13 @@ function CardDetails() {
       <div className="car-details-container">
         <div className="car-image-container">
           <img
-            style={{
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              display: 'block',
-              height: '300px',
-            }}
+            className="car-detail-image"
             src={carDetails.pictureUrl}
             alt={`car-${carDetails.stockNumber}`}
           />
         </div>
         <div className="car-details-view">
-          <div style={{width: 450}}>
+          <div className="car-detail-desciption">
             <p className="head-text">{getCarName()}</p>
             <p>{getCarDetails()}</p>
             <p>
@@ -89,8 +79,8 @@ function CardDetails() {
             </p>
             <Button
               className="align-right"
-              onPress={() => addToLocalStorage()}
-              text="Save"
+              onPress={handleOnSaveOrRemove}
+              text={!isSave ? 'Save' : 'Remove'}
             />
           </div>
         </div>

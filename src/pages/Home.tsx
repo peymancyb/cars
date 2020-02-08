@@ -17,6 +17,7 @@ function Home() {
     onChangePage,
     getInitialState,
   } = useCarListStore();
+  const shownCarListCount = 10 * (pagination.active - 1) + carsList.cars.length;
 
   useEffect(() => {
     getInitialState();
@@ -34,7 +35,7 @@ function Home() {
         </Grid>
         <Grid item xs={12} sm={7}>
           <AvailableCars
-            carListCount={10 * (pagination.active - 1) + carsList.cars.length}
+            carListCount={shownCarListCount}
             totalCarsCount={carsList.totalCarsCount}
             loading={loading}
           />

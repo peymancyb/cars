@@ -33,13 +33,22 @@ module.exports = {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/extensions": ['error', 'always', {
       ts: 'never',
-      tsx: 'never'
-    }]
+      tsx: 'never',
+      js: 'never',
+      jsx: 'never',
+    }],
+    "no-unused-vars": [
+      "warn",
+      { 
+          "vars": "all",
+          "varsIgnorePattern": "[I]\\w+"
+      }
+  ]
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },

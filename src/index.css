@@ -83,3 +83,31 @@ code {
   margin-left: 48px;
   margin-right: 48px;
 }
+
+.car-detail-image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 300px;
+}
+
+.car-detail-desciption {
+  width: 450px;
+}
+
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.not-found-logo {
+  width: 300px;
+}
+
+.link-text {
+  color: #dd843e;
+  padding: 4px;
+}

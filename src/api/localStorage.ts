@@ -1,22 +1,10 @@
-interface ICar {
-  stockNumber: number;
-  manufacturerName: string;
-  modelName: string;
-  color: string;
-  mileage: {
-    number: number;
-    unit: string;
-  };
-  fuelType: string;
-  pictureUrl: string;
-}
+import {ICar} from '.';
 
 const savedCars = 'saved_cars';
 
 class LocalStorage {
   static addCar(car: ICar) {
     const cars = LocalStorage.getCars();
-    console.log('cars -> ', cars);
     const isCar = cars.find(
       currentCar => currentCar.stockNumber === car.stockNumber,
     );
@@ -31,7 +19,6 @@ class LocalStorage {
     let cars;
     try {
       const carsList = localStorage.getItem(savedCars);
-      console.log('carsList -> ', carsList);
       cars = JSON.parse(carsList!);
     } catch (error) {
       console.log('error -> ', error);
@@ -43,6 +30,12 @@ class LocalStorage {
     const cars = LocalStorage.getCars();
     const newCarList = cars.filter(car => car.stockNumber !== stockNumber);
     localStorage.setItem(savedCars, JSON.stringify(newCarList));
+  }
+
+  static isCarSaved(stockNumber: number): boolean {
+    const cars = LocalStorage.getCars();
+    const stockNumbers = cars.map(car => car.stockNumber);
+    return stockNumbers.includes(stockNumber);
   }
 }
 

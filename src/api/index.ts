@@ -1,19 +1,19 @@
 import axios from 'axios';
 
-type IColors = string[];
+export type IColors = string[];
 
-interface ICarModel {
+export interface ICarModel {
   name: string;
 }
 
-interface IManufacture {
+export interface IManufacture {
   name: string;
   models: ICarModel[];
 }
 
-type IManufactures = IManufacture[];
+export type IManufactures = IManufacture[];
 
-interface ICar {
+export interface ICar {
   stockNumber: number;
   manufacturerName: string;
   modelName: string;
@@ -26,13 +26,13 @@ interface ICar {
   pictureUrl: string;
 }
 
-interface ICars {
+export interface ICars {
   totalPageCount: number;
   totalCarsCount: number;
   cars: ICar[];
 }
 
-interface IStockNumberData {
+export interface IStockNumberData {
   car: ICar;
 }
 
