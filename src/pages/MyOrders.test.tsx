@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, cleanup} from '@testing-library/react';
+import {render, cleanup, fireEvent} from '@testing-library/react';
 import MyOrders from './MyOrders';
 import LocalStorage from '../api/localStorage';
 
@@ -40,4 +40,13 @@ test('(MyOrders) should render car list using <CarList /> while there are car sa
 
   expect(getByTestId('car-list-component')).toBeTruthy();
   localStorage.clear();
+});
+
+test('(MyOrders) should remove car from list after clicking on "remove"', () => {
+  LocalStorage.addCar(carMockData);
+  const {getByText} = render(<MyOrders />);
+
+  fireEvent.click(getByText('remove'));
+
+  expect(getByText('Empty list!')).toBeTruthy();
 });
