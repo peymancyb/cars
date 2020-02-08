@@ -35,15 +35,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-interface ICarModel {
-  name: string;
-}
-
-interface IManufacture {
-  name: string;
-  models?: ICarModel[];
-}
-
 interface IFilterOptions {
   color: string;
   manufacture: string;

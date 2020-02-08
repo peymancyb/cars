@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export type IColors = string[];
+type IColors = string[];
 
-export interface ICarModel {
+interface ICarModel {
   name: string;
 }
 
@@ -11,7 +11,7 @@ export interface IManufacture {
   models: ICarModel[];
 }
 
-export type IManufactures = IManufacture[];
+type IManufactures = IManufacture[];
 
 export interface ICar {
   stockNumber: number;
@@ -32,7 +32,7 @@ export interface ICars {
   cars: ICar[];
 }
 
-export interface IStockNumberData {
+interface IStockNumberData {
   car: ICar;
 }
 

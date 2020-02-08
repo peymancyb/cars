@@ -6,24 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import brandColors from '../constants/colors';
-
-interface ICar {
-  stockNumber: number;
-  manufacturerName: string;
-  modelName: string;
-  color: string;
-  mileage: {
-    number: number;
-    unit: string;
-  };
-  fuelType: string;
-  pictureUrl: string;
-}
-
-interface ILoadingItem {
-  loading: boolean;
-  car?: ICar;
-}
+import {ICar} from '../api';
 
 const useStyles = makeStyles(theme => ({
   paper: {

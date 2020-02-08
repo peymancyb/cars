@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-import CarApi from '../api';
+import CarApi, {IManufacture, ICars} from '../api';
 
 interface IFilterState {
   color: string;
@@ -11,37 +11,9 @@ interface IFormOptions {
   manufacturers: string[];
 }
 
-interface ICar {
-  stockNumber: number;
-  manufacturerName: string;
-  modelName: string;
-  color: string;
-  mileage: {
-    number: number;
-    unit: string;
-  };
-  fuelType: string;
-  pictureUrl: string;
-}
-
-interface ICarsList {
-  cars: ICar[];
-  totalPageCount: number;
-  totalCarsCount: number;
-}
-
-interface IPagination {
+interface IPaginationState {
   active: number;
   total: number;
-}
-
-interface ICarModel {
-  name: string;
-}
-
-interface IManufacture {
-  name: string;
-  models?: ICarModel[];
 }
 
 const mockArray = new Array(10).fill({}).map(() => ({
@@ -68,11 +40,11 @@ function getManufacturersNames(manufacturersList: IManufacture[]) {
 
 function useCarListStore() {
   const [loading, setLoading] = useState<boolean>(true);
-  const [pagination, setPagination] = useState<IPagination>({
+  const [pagination, setPagination] = useState<IPaginationState>({
     active: 1,
     total: 1,
   });
-  const [carsList, setCarsList] = useState<ICarsList>({
+  const [carsList, setCarsList] = useState<ICars>({
     cars: mockArray,
     totalPageCount: 0,
     totalCarsCount: 0,

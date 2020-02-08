@@ -5,6 +5,9 @@ import Link from '@material-ui/core/Link';
 import Logo from '../assets/logo@2x.png';
 
 const useStyles = makeStyles(theme => ({
+  headerContainer: {
+    height: '80px',
+  },
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     display: 'flex',
@@ -19,7 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const links = [
+interface ILink {
+  url: string;
+  title: string;
+}
+
+const links: ILink[] = [
   {
     url: '/purchase',
     title: 'Purchase',
@@ -37,15 +45,15 @@ const links = [
 export default function Header() {
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.headerContainer}>
       <Toolbar className={classes.toolbar}>
         <div>
           <a href="/">
-            <img src={Logo} alt="logo" style={{width: 150}} />
+            <img src={Logo} alt="logo" className="header-logo" />
           </a>
         </div>
         <div>
-          {links.map(link => (
+          {links.map((link: ILink) => (
             <Link
               key={link.title}
               color="inherit"

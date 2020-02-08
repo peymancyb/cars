@@ -78,7 +78,7 @@ function CardDetails() {
               collection of favourite items.
             </p>
             <Button
-              className="align-right"
+              className="standard-button align-right"
               onPress={handleOnSaveOrRemove}
               text={!isSave ? 'Save' : 'Remove'}
             />

@@ -18,15 +18,7 @@ function Pagination({
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: 100,
-        marginRight: 100,
-      }}>
+    <div className="pagination-container">
       <p className="details-text" onClickCapture={() => onChangePage(1)}>
         First
       </p>

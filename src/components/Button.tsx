@@ -6,12 +6,9 @@ interface IButton {
   className?: string;
 }
 
-function Button({text, onPress, className}: IButton) {
+function Button({text, onPress, className = 'standard-button'}: IButton) {
   return (
-    <button
-      type="button"
-      className={`standard-button ${className}`}
-      onClick={onPress}>
+    <button type="button" className={className} onClick={onPress}>
       <p className="standard-text">{text}</p>
     </button>
   );
