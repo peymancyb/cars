@@ -10,7 +10,8 @@ module.exports = {
     "plugin:prettier/recommended", 
     "prettier/react", 
     "prettier/standard",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:testing-library/recommended"
   ],
   globals: {
     Atomics: 'readonly',
@@ -29,7 +30,8 @@ module.exports = {
     '@typescript-eslint',
     'prettier',
     'react-hooks',
-    'jest'
+    'jest',
+    'testing-library'
   ],
   rules: {
     "prettier/prettier": "error",
@@ -53,7 +55,10 @@ module.exports = {
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debug": "warn"
   },
   "settings": {
     "import/resolver": {

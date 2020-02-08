@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import Layout from '../components/Layout';
 import CarApi, {ICar} from '../api';
 import Button from '../components/Button';
@@ -10,7 +10,6 @@ function CardDetails() {
   const [carDetails, setCarDetails] = useState<ICar | null>(null);
   const [isSave, setIsSave] = useState(false);
   const {stockNumber} = useParams();
-  const history = useHistory();
 
   const getCar = useCallback(async () => {
     try {
@@ -19,11 +18,12 @@ function CardDetails() {
       const isSaved = LocalStorage.isCarSaved(car.stockNumber);
       setIsSave(isSaved);
       setCarDetails(car);
-      setLoading(false);
     } catch (error) {
-      history.push('/');
+      console.log('car not found!');
+    } finally {
+      setLoading(false);
     }
-  }, [stockNumber, history]);
+  }, [stockNumber]);
 
   useEffect(() => {
     getCar();

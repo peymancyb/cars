@@ -52,7 +52,7 @@ class CarApi {
       );
       carList = data;
     } catch (error) {
-      console.log('getCarList: error => ', error);
+      console.log('getCarList: error => ', error.message);
     }
     return carList;
   }
@@ -63,7 +63,7 @@ class CarApi {
       const {data} = await axios.get(`${endpointUrl}manufacturers/`);
       manufactureList = data.manufacturers;
     } catch (error) {
-      console.log('getCarList: error => ', error);
+      console.log('getManufacturersList: error => ', error.message);
     }
     return manufactureList;
   }
@@ -74,7 +74,7 @@ class CarApi {
       const {data} = await axios.get(`${endpointUrl}colors/`);
       colors = data.colors;
     } catch (error) {
-      console.log('getCarList: error => ', error);
+      console.log('getColorsList: error => ', error.message);
     }
     return colors;
   }
@@ -87,7 +87,7 @@ class CarApi {
       const {data} = await axios.get(`${endpointUrl}cars/${stocknumber}`);
       car = data;
     } catch (error) {
-      console.log('getCarList: error => ', error);
+      console.log('getCarByStockNumber: error => ', error.message);
     }
     return car;
   }
