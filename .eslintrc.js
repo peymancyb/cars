@@ -10,6 +10,7 @@ module.exports = {
     "plugin:prettier/recommended", 
     "prettier/react", 
     "prettier/standard",
+    "plugin:jest/recommended"
   ],
   globals: {
     Atomics: 'readonly',

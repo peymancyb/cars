@@ -5,7 +5,7 @@ import Logo from '../assets/logo@2x.png';
 function NotFound() {
   return (
     <Layout>
-      <div className="not-found-container">
+      <div data-testid="not-found-component" className="not-found-container">
         <img src={Logo} className="not-found-logo" alt="logo" />
         <h1>404 - Not Found</h1>
         <p>Sorry, the page you are looking for does not exist.</p>

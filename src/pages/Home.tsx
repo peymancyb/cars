@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <Layout>
-      <Grid container spacing={3} justify="center">
+      <Grid data-testid="home-component" container spacing={3} justify="center">
         <Grid item xs={6} sm={3}>
           <FilterForm
             colors={formOptions.colors}

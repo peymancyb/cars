@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import LocalStorage from '../api/localStorage';
 
 function CardDetails() {
+  const [loading, setLoading] = useState(true);
   const [carDetails, setCarDetails] = useState<ICar | null>(null);
   const [isSave, setIsSave] = useState(false);
   const {stockNumber} = useParams();
@@ -13,10 +14,12 @@ function CardDetails() {
 
   const getCar = useCallback(async () => {
     try {
+      setLoading(true);
       const {car} = await CarApi.getCarByStockNumber(stockNumber!);
       const isSaved = LocalStorage.isCarSaved(car.stockNumber);
       setIsSave(isSaved);
       setCarDetails(car);
+      setLoading(false);
     } catch (error) {
       history.push('/');
     }
@@ -47,18 +50,24 @@ function CardDetails() {
     setIsSave(!isSave);
   };
 
-  if (!carDetails) {
-    return null;
+  if (loading) {
+    return <p>Loading ...</p>;
+  }
+
+  if (!carDetails && !loading) {
+    return <p>Car not found!</p>;
   }
 
   return (
     <Layout>
-      <div className="car-details-container">
+      <div
+        data-testid="car-details-component"
+        className="car-details-container">
         <div className="car-image-container">
           <img
             className="car-detail-image"
-            src={carDetails.pictureUrl}
-            alt={`car-${carDetails.stockNumber}`}
+            src={carDetails!.pictureUrl}
+            alt={`car-${carDetails!.stockNumber}`}
           />
         </div>
         <div className="car-details-view">

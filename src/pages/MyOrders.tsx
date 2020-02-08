@@ -14,16 +14,18 @@ function MyOrders() {
 
   return (
     <Layout>
-      {!cars.length ? (
-        <p>Empty list!</p>
-      ) : (
-        <CarList
-          loading={false}
-          cars={cars}
-          removable
-          onRemoveItem={onRemoveCar}
-        />
-      )}
+      <div data-testid="my-orders-component">
+        {!cars.length ? (
+          <p>Empty list!</p>
+        ) : (
+          <CarList
+            loading={false}
+            cars={cars}
+            removable
+            onRemoveItem={onRemoveCar}
+          />
+        )}
+      </div>
     </Layout>
   );
 }

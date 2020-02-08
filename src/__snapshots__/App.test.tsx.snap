@@ -1,0 +1,808 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(App) routing/navigating (CarDetails) component should be render when the route is matching (/car/:stockNumber) 1`] = `
+<DocumentFragment>
+  <p>
+    Loading ...
+  </p>
+</DocumentFragment>
+`;
+
+exports[`(App) routing/navigating (Home) component should be render by default when the route is root (/) 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-headerContainer-1"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-2 MuiToolbar-gutters"
+    >
+      <div>
+        <a
+          href="/"
+        >
+          <img
+            alt="logo"
+            class="header-logo"
+            src="logo@2x.png"
+          />
+        </a>
+      </div>
+      <div>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-3 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/purchase"
+        >
+          Purchase
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-3 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/myorders"
+        >
+          My Orders
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-3 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/sell"
+        >
+          Sell
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="content-container"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-justify-xs-center"
+      data-testid="home-component"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-3"
+      >
+        <div
+          class="makeStyles-container-147"
+        >
+          <div>
+            <div
+              class="MuiFormControl-root makeStyles-formControl-148"
+            >
+              <label
+                class="MuiFormLabel-root MuiFormLabel-filled"
+                for="color-label"
+              >
+                Color
+              </label>
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root makeStyles-selectEmpty-149 MuiInputBase-formControl"
+              >
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="color-label color-label-id"
+                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                  id="color-label-id"
+                  role="button"
+                  tabindex="0"
+                >
+                  All car colors
+                </div>
+                <input
+                  type="hidden"
+                  value="All car colors"
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-220 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-221"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root makeStyles-formControl-148"
+            >
+              <label
+                class="MuiFormLabel-root MuiFormLabel-filled"
+                for="Manufacturer-label"
+              >
+                Manufacturer
+              </label>
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root makeStyles-selectEmpty-149 MuiInputBase-formControl"
+              >
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="Manufacturer-label Manufacturer-label-id"
+                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                  id="Manufacturer-label-id"
+                  role="button"
+                  tabindex="0"
+                >
+                  All manufacturers
+                </div>
+                <input
+                  type="hidden"
+                  value="All manufacturers"
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-220 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-221"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root makeStyles-formControl-148"
+            >
+              <label
+                class="MuiFormLabel-root"
+                for="Manufacturer-label"
+              >
+                Sort by
+              </label>
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root makeStyles-selectEmpty-149 MuiInputBase-formControl"
+              >
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="Manufacturer-label Manufacturer-label-id"
+                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                  id="Manufacturer-label-id"
+                  role="button"
+                  tabindex="0"
+                >
+                  None
+                </div>
+                <input
+                  type="hidden"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-220 MuiOutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend-221"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-buttonContainer-151"
+          >
+            <button
+              class="standard-button"
+              type="button"
+            >
+              <p
+                class="standard-text"
+              >
+                Filter
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-7"
+      >
+        <div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-cardContainer-229"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-carCard-228 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave"
+                  style="width: 120px; height: 90px;"
+                />
+              </div>
+              <div
+                class="MuiCardContent-root makeStyles-content-231"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 50px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 80%; height: 30px;"
+                />
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave"
+                  style="width: 40%; height: 40px;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer
+    class="footer-container"
+  >
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        © AUTO1 Group 2018
+      </p>
+    </div>
+  </footer>
+</DocumentFragment>
+`;
+
+exports[`(App) routing/navigating (MyOrders) component is also should be rendered when the route is matching (/purchase)  1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-headerContainer-329"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-330 MuiToolbar-gutters"
+    >
+      <div>
+        <a
+          href="/"
+        >
+          <img
+            alt="logo"
+            class="header-logo"
+            src="logo@2x.png"
+          />
+        </a>
+      </div>
+      <div>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-331 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/purchase"
+        >
+          Purchase
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-331 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/myorders"
+        >
+          My Orders
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-331 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/sell"
+        >
+          Sell
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="content-container"
+  >
+    <div
+      data-testid="my-orders-component"
+    >
+      <p>
+        Empty list!
+      </p>
+    </div>
+  </div>
+  <footer
+    class="footer-container"
+  >
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        © AUTO1 Group 2018
+      </p>
+    </div>
+  </footer>
+</DocumentFragment>
+`;
+
+exports[`(App) routing/navigating (MyOrders) component should be render when the route is matching (/myorders) 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-headerContainer-278"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-279 MuiToolbar-gutters"
+    >
+      <div>
+        <a
+          href="/"
+        >
+          <img
+            alt="logo"
+            class="header-logo"
+            src="logo@2x.png"
+          />
+        </a>
+      </div>
+      <div>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-280 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/purchase"
+        >
+          Purchase
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-280 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/myorders"
+        >
+          My Orders
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-280 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/sell"
+        >
+          Sell
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="content-container"
+  >
+    <div
+      data-testid="my-orders-component"
+    >
+      <p>
+        Empty list!
+      </p>
+    </div>
+  </div>
+  <footer
+    class="footer-container"
+  >
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        © AUTO1 Group 2018
+      </p>
+    </div>
+  </footer>
+</DocumentFragment>
+`;
+
+exports[`(App) routing/navigating (NotFound) component should be render for all other routes that are not defined (/example) 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-headerContainer-380"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-381 MuiToolbar-gutters"
+    >
+      <div>
+        <a
+          href="/"
+        >
+          <img
+            alt="logo"
+            class="header-logo"
+            src="logo@2x.png"
+          />
+        </a>
+      </div>
+      <div>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-382 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/purchase"
+        >
+          Purchase
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-382 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/myorders"
+        >
+          My Orders
+        </a>
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-toolbarLink-382 MuiTypography-body2 MuiTypography-colorInherit MuiTypography-noWrap"
+          href="/sell"
+        >
+          Sell
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="content-container"
+  >
+    <div
+      class="not-found-container"
+      data-testid="not-found-component"
+    >
+      <img
+        alt="logo"
+        class="not-found-logo"
+        src="logo@2x.png"
+      />
+      <h1>
+        404 - Not Found
+      </h1>
+      <p>
+        Sorry, the page you are looking for does not exist.
+      </p>
+      <p>
+        You can always go back to
+        <span>
+          <a
+            class="link-text"
+            href="/"
+          >
+            homepage.
+          </a>
+        </span>
+      </p>
+    </div>
+  </div>
+  <footer
+    class="footer-container"
+  >
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        © AUTO1 Group 2018
+      </p>
+    </div>
+  </footer>
+</DocumentFragment>
+`;
