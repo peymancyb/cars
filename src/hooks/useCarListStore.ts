@@ -4,10 +4,8 @@ import carListReducer, {
   carListInitialState,
   types,
   IFilterOptions,
-  allColors,
-  allManufacturers,
 } from './carListReducer';
-import {getManufacturersNames} from '../helpers';
+import {getManufacturersNames, getColorsLabel} from '../helpers';
 
 function useCarListStore() {
   const [state, dispatch] = useReducer(carListReducer, carListInitialState);
@@ -19,17 +17,12 @@ function useCarListStore() {
   };
 
   const getCarList = useCallback(async (filterOptions, activePage) => {
-    const manufacture =
-      filterOptions.manufacture === allManufacturers
-        ? ''
-        : filterOptions.manufacture;
-    const color = filterOptions.color === allColors ? '' : filterOptions.color;
     const {sortBy} = filterOptions;
     window.scrollTo(0, 0);
     const carList = await CarApi.getCarList(
       activePage,
-      manufacture,
-      color,
+      filterOptions.manufacture,
+      filterOptions.color,
       sortBy,
     );
     dispatch({
@@ -49,7 +42,7 @@ function useCarListStore() {
         await getCarList(filterOptions, selectedPage);
         setLoading(false);
       } catch (error) {
-        console.log('updateCarList:error', error);
+        // console.log('updateCarList:error', error);
       }
     },
     [getCarList],
@@ -78,21 +71,22 @@ function useCarListStore() {
         CarApi.getManufacturersList(),
         getCarList(state.filter, state.pagination.active),
       ]);
-      const manufacturersNames = getManufacturersNames(manufacturersList);
+      const manufacturersLabel = getManufacturersNames(manufacturersList);
+      const colorsLabel = getColorsLabel(colorsList);
       dispatch({
         type: types.SET_FORM_OPTIONS,
         data: {
           ...state.formOptions,
-          colors: [...state.formOptions.colors, ...colorsList],
+          colors: [...state.formOptions.colors, ...colorsLabel],
           manufacturers: [
             ...state.formOptions.manufacturers,
-            ...manufacturersNames,
+            ...manufacturersLabel,
           ],
         },
       });
       setLoading(false);
     } catch (error) {
-      console.log('error -> ', error);
+      // console.log('error -> ', error);
     }
   }, [getCarList, state.filter, state.formOptions, state.pagination.active]);
 

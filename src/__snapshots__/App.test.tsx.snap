@@ -61,13 +61,14 @@ exports[`(App) routing/navigating (Home) component should be render by default w
       >
         <div
           class="makeStyles-container-147"
+          data-testid="filter-form-component"
         >
           <div>
             <div
               class="MuiFormControl-root makeStyles-formControl-148"
             >
               <label
-                class="MuiFormLabel-root MuiFormLabel-filled"
+                class="MuiFormLabel-root"
                 for="color-label-Color"
               >
                 Color
@@ -87,7 +88,7 @@ exports[`(App) routing/navigating (Home) component should be render by default w
                 </div>
                 <input
                   type="hidden"
-                  value="All car colors"
+                  value=""
                 />
                 <svg
                   aria-hidden="true"
@@ -120,7 +121,7 @@ exports[`(App) routing/navigating (Home) component should be render by default w
               class="MuiFormControl-root makeStyles-formControl-148"
             >
               <label
-                class="MuiFormLabel-root MuiFormLabel-filled"
+                class="MuiFormLabel-root"
                 for="color-label-Manufacturer"
               >
                 Manufacturer
@@ -140,7 +141,7 @@ exports[`(App) routing/navigating (Home) component should be render by default w
                 </div>
                 <input
                   type="hidden"
-                  value="All manufacturers"
+                  value=""
                 />
                 <svg
                   aria-hidden="true"

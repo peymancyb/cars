@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {makeStyles} from '@material-ui/core/styles';
 import brandColors from '../constants/colors';
 import Button from './Button';
-import {ISort, IFilterOptions} from '../hooks/carListReducer';
+import {IMenuItem, IFilterOptions} from '../hooks/carListReducer';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -37,9 +37,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface IFilterForm {
-  manufactureList: string[];
-  colors: string[];
-  sortList: ISort[];
+  manufactureList: IMenuItem[];
+  colors: IMenuItem[];
+  sortList: IMenuItem[];
   onFilter: (filterOptions: IFilterOptions) => void;
 }
 
@@ -76,23 +76,23 @@ function FilterForm({
   sortList,
   onFilter,
 }: IFilterForm) {
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [selectedColor, setSelectedColor] = useState(colors[0].value);
   const [selectedManufacture, setSelectedManufacture] = useState(
-    manufactureList[0],
+    manufactureList[0].value,
   );
   const [selectedSort, setSelectedSort] = useState(sortList[0].value);
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div data-testid="filter-form-component" className={classes.container}>
       <div>
         <FilterSelect
           labelText="Color"
           value={selectedColor}
           onChange={setSelectedColor}>
           {colors.map(color => (
-            <MenuItem key={color} value={color}>
-              {color}
+            <MenuItem key={`${color.title}-${color.value}`} value={color.value}>
+              {color.title}
             </MenuItem>
           ))}
         </FilterSelect>
@@ -101,8 +101,10 @@ function FilterForm({
           value={selectedManufacture}
           onChange={setSelectedManufacture}>
           {manufactureList.map(manufacture => (
-            <MenuItem key={manufacture} value={manufacture}>
-              {manufacture}
+            <MenuItem
+              key={`${manufacture.title}-${manufacture.value}`}
+              value={manufacture.value}>
+              {manufacture.title}
             </MenuItem>
           ))}
         </FilterSelect>

@@ -16,7 +16,7 @@ export interface IFilterOptions {
   sortBy: string;
 }
 
-export interface ISort {
+export interface IMenuItem {
   title: string;
   value: string;
 }
@@ -28,9 +28,9 @@ interface IFilterState {
 }
 
 interface IFormOptions {
-  colors: string[];
-  manufacturers: string[];
-  sortList: ISort[];
+  colors: IMenuItem[];
+  manufacturers: IMenuItem[];
+  sortList: IMenuItem[];
 }
 
 interface IPaginationState {
@@ -51,9 +51,15 @@ interface IAction {
   data?: any;
 }
 
-export const allColors = 'All car colors';
-export const allManufacturers = 'All manufacturers';
-const allSortOptions: ISort[] = [
+export const defaultColor = {
+  title: 'All car colors',
+  value: '',
+};
+export const defaultManufacturers = {
+  title: 'All manufacturers',
+  value: '',
+};
+const allSortOptions: IMenuItem[] = [
   {title: 'None', value: ''},
   {title: 'Mileage - Ascending', value: 'asc'},
   {title: 'Mileage - Descending', value: 'des'},
@@ -71,13 +77,13 @@ export const carListInitialState = {
     totalCarsCount: 0,
   },
   formOptions: {
-    colors: [allColors],
-    manufacturers: [allManufacturers],
+    colors: [defaultColor],
+    manufacturers: [defaultManufacturers],
     sortList: allSortOptions,
   },
   filter: {
-    color: allColors,
-    manufacture: allManufacturers,
+    color: defaultColor.value,
+    manufacture: defaultManufacturers.value,
     sortBy: allSortOptions[0].value,
   },
 };

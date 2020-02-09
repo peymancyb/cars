@@ -14,7 +14,11 @@ export const carsListMock = new Array(10).fill({}).map(() => ({
 }));
 
 export const getManufacturersNames = (manufacturersList: IManufacture[]) => {
-  return manufacturersList.map(
-    (manufacturer: IManufacture) => manufacturer.name,
-  );
+  return manufacturersList.map((manufacturer: IManufacture) => ({
+    title: manufacturer.name,
+    value: manufacturer.name,
+  }));
 };
+
+export const getColorsLabel = (colors: string[]) =>
+  colors.map(color => ({title: color, value: color}));
