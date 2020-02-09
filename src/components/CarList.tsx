@@ -123,7 +123,7 @@ function CarList({loading, cars, removable, onRemoveItem}: ICarList) {
     <div data-testid="car-list-component">
       {cars.map(car => (
         <CarItem
-          key={car.stockNumber}
+          key={`${car.stockNumber}-${car.color}`}
           loading={loading}
           car={car}
           removable={removable}

@@ -15,7 +15,7 @@ function AvailableCars({
     return null;
   }
   return (
-    <div>
+    <div data-testid="available-cars-view">
       <p className="head-text">Available cars</p>
       <p className="result-text">
         Showing {carListCount} of {totalCarsCount} results

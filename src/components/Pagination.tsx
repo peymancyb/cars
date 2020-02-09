@@ -18,7 +18,7 @@ function Pagination({
   }
 
   return (
-    <div className="pagination-container">
+    <div data-testid="pagination-component" className="pagination-container">
       <p className="details-text" onClickCapture={() => onChangePage(1)}>
         First
       </p>
