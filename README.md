@@ -17,6 +17,10 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `yarn coverage`
+
+Shows the test coverage of the source code. 
+
 ### `yarn build`
 
 Builds the app for production to the `build` folder.<br />
@@ -37,8 +41,22 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## More About the project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Non-technical requirements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application must meet the following requirements:
+
+- Fetch all available cars
+- Implement pagination with limit of 10
+- Allow the user to filter the cars by manufacturer or color
+- Show the details of a selected car
+- __Bonus__: Add/Remove a car to/from the favorites collection using local storage
+
+### Technical requirements
+
+- Create a SPA using latest **ReactJS**
+- Use create-react-app to setup app
+- Use best practices
+- Add tests (with [react-testing-library](https://testing-library.com/docs/react-testing-library/intro))
+- __Bonus__  Static type checking (TS or Flow)
