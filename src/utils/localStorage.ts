@@ -5,24 +5,16 @@ const savedCars = 'saved_cars';
 class LocalStorage {
   static addCar(car: ICar) {
     const cars = LocalStorage.getCars();
-    const isCar = cars.find(
-      currentCar => currentCar.stockNumber === car.stockNumber,
-    );
-
-    if (!isCar && car) {
+    const isCarSaved = LocalStorage.isCarSaved(car.stockNumber);
+    if (!isCarSaved && car) {
       const newCarList = [...cars, car];
       localStorage.setItem(savedCars, JSON.stringify(newCarList));
     }
   }
 
   static getCars(): ICar[] {
-    let cars;
-    try {
-      const carsList = localStorage.getItem(savedCars);
-      cars = JSON.parse(carsList!);
-    } catch (error) {
-      console.log('error -> ', error);
-    }
+    const carsList = localStorage.getItem(savedCars);
+    const cars = JSON.parse(carsList!);
     return cars || [];
   }
 
