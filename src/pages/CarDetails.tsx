@@ -1,15 +1,21 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {RouteComponentProps} from 'react-router-dom';
 import Layout from '../components/Layout';
 import CarApi, {ICar} from '../api';
 import Button from '../components/Button';
 import LocalStorage from '../utils/localStorage';
 
-function CardDetails() {
+interface MatchParams {
+  stockNumber: string;
+}
+
+interface MatchProps extends RouteComponentProps<MatchParams> {}
+
+function CardDetails({match}: MatchProps) {
   const [loading, setLoading] = useState(true);
   const [carDetails, setCarDetails] = useState<ICar | null>(null);
   const [isSave, setIsSave] = useState(false);
-  const {stockNumber} = useParams();
+  const {stockNumber} = match.params;
 
   const getCar = useCallback(async () => {
     try {
@@ -19,7 +25,7 @@ function CardDetails() {
       setIsSave(isSaved);
       setCarDetails(car);
     } catch (error) {
-      console.log('car not found!');
+      console.log('getCar: ', error.message);
     } finally {
       setLoading(false);
     }

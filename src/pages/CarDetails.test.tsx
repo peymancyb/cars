@@ -2,49 +2,55 @@ import React from 'react';
 import {
   render,
   cleanup,
-  waitForElement,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import {Router} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import {MemoryRouter, Route, withRouter} from 'react-router-dom';
 import CarDetails from './CarDetails';
+
+const CarDetailsWrapper = withRouter(CarDetails);
+
+interface IRenderCarDetailsWrapper {
+  stockNumber: number;
+}
+
+const renderCarDetailsWrapper = ({stockNumber}: IRenderCarDetailsWrapper) => {
+  return render(
+    <MemoryRouter initialEntries={[`/car/${stockNumber}`]}>
+      <Route path="/car/:stockNumber">
+        <CarDetailsWrapper />
+      </Route>
+    </MemoryRouter>,
+  );
+};
 
 afterEach(cleanup);
 
 test('(CarDetails) component should match snapshot', () => {
-  const history = createBrowserHistory();
-  const {asFragment} = render(
-    <Router history={history}>
-      <CarDetails />
-    </Router>,
-  );
+  const stockNumber = 10066;
+  const {asFragment} = renderCarDetailsWrapper({
+    stockNumber,
+  });
   expect(asFragment).toMatchSnapshot();
 });
 
-test('using "stockNumber" provided in url should get the car information if car is available', () => {
-  const history = createBrowserHistory();
-  history.push('/car/10000');
-  const {getByTestId, getByText} = render(
-    <Router history={history}>
-      <CarDetails />
-    </Router>,
-  );
+test('using "stockNumber" provided in url should get the car information if car is available', async () => {
+  const stockNumber = 10066;
+  const {getByText, container} = renderCarDetailsWrapper({
+    stockNumber,
+  });
 
-  return waitForElementToBeRemoved(() => getByText('Loading ...'))
-    .then(() => {
-      return waitForElement(() => getByText('Car not found!'))
-        .then(() => {
-          expect(getByText('Car not found!')).toBeTruthy();
-        })
-        .catch(() => {
-          expect(
-            getByText(
-              'If you like this car, click the button and save it in your collection of favourite items.',
-            ),
-          ).toBeTruthy();
-        });
-    })
-    .catch(err => {
-      expect(err).toThrowError();
-    });
+  await waitForElementToBeRemoved(() => getByText('Loading ...'));
+  expect(container).toHaveTextContent(
+    'If you like this car, click the button and save',
+  );
+});
+
+test('showing not found message when car is not available', async () => {
+  const stockNumber = 1;
+  const {getByText, container} = renderCarDetailsWrapper({
+    stockNumber,
+  });
+
+  await waitForElementToBeRemoved(() => getByText('Loading ...'));
+  expect(container).toHaveTextContent('Car not found!');
 });
