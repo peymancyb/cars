@@ -4,7 +4,6 @@ import {
   cleanup,
   waitForElement,
   fireEvent,
-  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import Home from './Home';
 
@@ -15,8 +14,11 @@ beforeAll(() => {
 });
 
 describe('(Home) component', () => {
-  test('should match snapshot', () => {
-    const {asFragment} = render(<Home />);
+  test('should match snapshot', async () => {
+    const {asFragment, getByTestId} = render(<Home />);
+    await waitForElement(() => getByTestId('home-component'));
+    await waitForElement(() => getByTestId('available-cars-view'));
+    await waitForElement(() => getByTestId('pagination-component'));
     expect(asFragment).toMatchSnapshot();
   });
 
