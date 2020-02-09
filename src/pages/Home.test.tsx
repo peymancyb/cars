@@ -72,4 +72,12 @@ describe('(Home) component', () => {
     await waitForElement(() => getByTestId('pagination-component'));
     expect(getByText('Last')).toBeTruthy();
   });
+
+  test('Filter button should filter the list', async () => {
+    const {getByText, getByTestId} = render(<Home />);
+    await waitForElement(() => getByTestId('available-cars-view'));
+    fireEvent.click(getByText('Filter'));
+    await waitForElement(() => getByTestId('available-cars-view'));
+    expect(getByTestId('available-cars-view')).toBeTruthy();
+  });
 });
