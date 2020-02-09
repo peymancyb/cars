@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import LocalStorage from '../api/localStorage';
+import LocalStorage from '../utils/localStorage';
 import CarList from '../components/CarList';
 import Layout from '../components/Layout';
 

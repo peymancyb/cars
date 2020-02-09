@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import Layout from '../components/Layout';
 import CarApi, {ICar} from '../api';
 import Button from '../components/Button';
-import LocalStorage from '../api/localStorage';
+import LocalStorage from '../utils/localStorage';
 
 function CardDetails() {
   const [loading, setLoading] = useState(true);

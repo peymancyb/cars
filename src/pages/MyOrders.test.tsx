@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, cleanup, fireEvent} from '@testing-library/react';
 import MyOrders from './MyOrders';
-import LocalStorage from '../api/localStorage';
+import LocalStorage from '../utils/localStorage';
 
 const carMockData = {
   stockNumber: Math.random() * 100 + 1,

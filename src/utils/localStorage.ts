@@ -1,4 +1,4 @@
-import {ICar} from '.';
+import {ICar} from '../api';
 
 const savedCars = 'saved_cars';
 
